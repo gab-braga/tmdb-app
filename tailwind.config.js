@@ -7,6 +7,9 @@ export default {
   darkMode: "class",
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["Montserrat", "Roboto", "sans-serif"]
+      },
       colors: {
         "purple-dark": {
           50: "#18111B",
@@ -93,7 +96,7 @@ export default {
           975: "#EEEEF0",
         },
         "mauve": {
-          50: "#FDFCFDu",
+          50: "#FDFCFD",
           100: "#FAF9FB",
           200: "#F2EFF3",
           300: "#EAE7EC",
