@@ -10,6 +10,11 @@ export default {
       fontFamily: {
         sans: ["Montserrat", "Roboto", "sans-serif"]
       },
+      backgroundImage: {
+        "home-image": "url('src/assets/backgropund-krists-luhaers-unsplash.png')",
+        "home-gradient": "linear-gradient(0deg, #FDFCFD 0%, rgba(253,252,253, 0.46) 49%, #FDFCFD 100%);",
+        "home-gradient-dark": "linear-gradient(0deg, #121113 0%, rgba(18,17,19, 0.46) 49%, #121113 100%);",
+      },
       colors: {
         "purple-dark": {
           50: "#18111B",
