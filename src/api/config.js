@@ -1,8 +1,10 @@
 import axios from "axios";
 
+const api_key = "";
+
 const api = axios.create({
     baseURL: "https://api.themoviedb.org/3",
-    params: { api_key: "" }
+    params: { api_key },
 });
 
 function getUrlPoster(pathImage) {

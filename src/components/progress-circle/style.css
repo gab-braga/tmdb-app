@@ -1,0 +1,13 @@
+.progress-circle circle {
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke-width: 10;
+    stroke: rgba(255, 255, 255, 0.3);
+}
+
+.progress-circle circle:nth-child(2) {
+    stroke: #FFE000;
+    stroke-dasharray: var(--circle);
+    stroke-dashoffset: calc(var(--circle) - ((var(--circle) / 100) * var(--progress)));
+}

@@ -1,3 +1,12 @@
+.movie-card .movie-genres,
+.movie-card .movie-rating {
+    display: none;
+}
+
+.movie-card:hover .movie-rating {
+    display: flex;
+}
+
 .movie-card:hover .movie-genres {
     display: inline;
 }
