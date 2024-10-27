@@ -1,7 +1,8 @@
 import "./style.css";
 import { useState } from "react";
 import { useEffect } from "react";
-import api, { getUrlPoster } from "../../api/config";
+import api from "../../api/config";
+import MovieCard from "../../components/movie-card";
 
 async function searchGenres() {
     const { data } = await api.get("/genre/movie/list", {
@@ -50,20 +51,8 @@ export default () => {
 
     return (
         <main className="w-full flex-1 p-8">
-            <div className="bg-[#1414153b] dark:bg-[#EBEAF814] p-6 rounded backdrop-blur-sm grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-                {movies.map(({ poster_path, title, genres, id }) => {
-                    return (
-                        <div key={id} className="w-full min-w-48 h-80 xl:h-96 relative overflow-hidden rounded">
-                            <img src={getUrlPoster(poster_path)} alt="" className="w-full h-full object-cover" />
-                            <div className="p-4 w-full h-full absolute top-0 flex flex-col gap-2 justify-end items-stretch bg-card-gradient-dark">
-                                <span className="w-full font-semibold leading-tight uppercase text-[#EEEEEE]">
-                                    {title}
-                                </span>
-                                <span className="text-sm text-[#B4B4B4] leading-tight">{genres}</span>
-                            </div>
-                        </div>
-                    );
-                })}
+            <div className="bg-[#1414153b] dark:bg-[#EBEAF814] p-6 rounded backdrop-blur-sm grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+                {movies.map((movie, idx) => <MovieCard {...movie} key={idx} />)}
             </div>
         </main>
     );

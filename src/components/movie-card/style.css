@@ -1,0 +1,3 @@
+.movie-card:hover .movie-genres {
+    display: inline;
+}
