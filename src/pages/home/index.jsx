@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import api from "../../api/config";
 import MovieCard from "../../components/movie-card";
+import Pagination from "../../components/pagination";
 
 async function searchGenres() {
     const { data } = await api.get("/genre/movie/list", {
@@ -42,7 +43,21 @@ export default () => {
     async function loadData() {
         const movies = await searchMovies(page);
         await addGenres(movies);
-        setMovies(movies)
+        setMovies(movies);
+    }
+
+    function handlePreviousPage() {
+        const previous = page-1;
+        if (previous >= 1) setPage(value => value-1);
+    }
+
+    function handleNextPage() {
+        const next = page+1;
+        if (next <= 500) setPage(value => value+1);
+    }
+
+    function handleChangePage(newPage) {
+        if (newPage >= 1 && newPage <= 500) setPage(newPage);
     }
 
     useEffect(() => {
@@ -54,6 +69,7 @@ export default () => {
             <div className="bg-[#1414153b] dark:bg-[#EBEAF814] p-6 rounded backdrop-blur-sm grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
                 {movies.map((movie, idx) => <MovieCard {...movie} key={idx} />)}
             </div>
+            <Pagination {...{page, handlePreviousPage, handleNextPage, handleChangePage}} />
         </main>
     );
 }
