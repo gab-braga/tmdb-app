@@ -7,12 +7,16 @@ export default {
   darkMode: "class",
   theme: {
     extend: {
+      screens: {
+        "xs": "480px"
+      },
       fontFamily: {
         sans: ["Montserrat", "Roboto", "sans-serif"]
       },
       backgroundImage: {
         "home-image": "url('src/assets/backgropund-krists-luhaers-unsplash.png')",
         "home-gradient-dark": "linear-gradient(0deg, #121113 0%, rgba(18,17,19, 0.46) 49%, #121113 100%);",
+        "card-gradient-dark": "linear-gradient(0deg, rgba(18,17,19, 0.90) 15%, transparent 60%);",
       },
       colors: {
         "purple-dark": {
