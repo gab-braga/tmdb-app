@@ -4,7 +4,7 @@ import IconChevronLeft from "../icons/IconChevronLeft";
 import IconChevronRight from "../icons/IconChevronRight";
 import { useEffect } from "react";
 
-const classButton = "text-white bg-purple-800 py-3 px-5 rounded-sm disabled:bg-[#22193888] dark:disabled:bg-[#EBEAF814]";
+const classButton = "flex justify-center items-center text-white bg-purple-800 flex-1 xs:flex-none xs:px-5 py-3 rounded-sm disabled:bg-[#22193888] dark:disabled:bg-[#EBEAF814]";
 
 function generatePages(currentPage) {
     const pages = [];
@@ -31,7 +31,7 @@ export default ({ page, handlePreviousPage, handleNextPage, handleChangePage }) 
     }, [page]);
 
     return (
-        <div className="w-full pt-6 flex gap-4 justify-center items-center">
+        <div className="w-full pt-6 flex gap-2 sm:gap-3 md:gap-4 justify-center items-center">
             <button onClick={handlePreviousPage} className={classButton} disabled={page == 1}>
                 <IconChevronLeft />
             </button>
