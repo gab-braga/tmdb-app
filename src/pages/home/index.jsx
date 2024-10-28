@@ -71,7 +71,7 @@ export default () => {
                 <div className="flex-1 flex justify-center items-center max-w-[488px]">
                     <input type="text" className="w-full h-14 p-4 bg-mauve-100 dark:bg-mauve-dark-100 border-t border-b border-l border-mauve-600 dark:border-mauve-dark-600 rounded-s outline-none text-mauve-dark-100 dark:text-white" placeholder="Pesquise por filmes" />
                     <button className="w-14 h-14 bg-mauve-100 dark:bg-mauve-dark-100 border-t border-b border-r border-mauve-600 dark:border-mauve-dark-600 flex justify-center items-center rounded-e outline-none">
-                        <IconSearch />
+                        <IconSearch className="text-mauve-950 dark:text-mauve-dark-950" />
                     </button>
                 </div>
             </div>

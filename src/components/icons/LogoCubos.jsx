@@ -1,5 +1,5 @@
-export default () => {
-    const classStyle = "w-40 h-9 fill-current stroke-current text-mauve-975 dark:text-mauve-dark-975";
+export default ({ className }) => {
+    const classStyle = `fill-current stroke-current ${className || "text-white"}`;
     return (
         <svg className={classStyle} width="641" height="145" viewBox="0 0 641 145" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clipPath="url(#clip0_756_1272)">
