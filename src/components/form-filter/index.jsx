@@ -5,8 +5,8 @@ import IconFilter from "../icons/IconFilter";
 import IconSearch from "../icons/IconSearch";
 
 export default ({ submit }) => {
-    const [filter, setFilter] = useState(false);
-    const { handleSubmit, register, watch, reset } = useForm();
+    const [isFilterActive, setFilterActive] = useState(false);
+    const { handleSubmit, register, watch } = useForm();
 
     const query = watch("query");
     const sort_by = watch("sort_by");
@@ -24,30 +24,26 @@ export default ({ submit }) => {
         });
     }
 
-    function resetForm() {
-        reset({
-            sort_by: "popularity.desc",
-            language: "pt-BR",
-            include_adult: false,
-            primary_release_year: ""
-        });
+    function handleToggleFilter() {
+        const toggleFilter = !isFilterActive;
+        setFilterActive(toggleFilter);
+        if (toggleFilter)
+            sendFormData();
+        else submit({ query });
     }
 
-    function handleToggleFilter() {
-        const toggleFilter = !filter;
-        setFilter(toggleFilter);
-        if (!toggleFilter) {
-            resetForm();
-            submit({ query });
-        } else sendFormData();
+    function handleFormSubmit() {
+        if (isFilterActive)
+            sendFormData();
+        else submit({ query });
     }
 
     useEffect(() => {
-        sendFormData();
+        handleFormSubmit();
     }, [sort_by, language, include_adult, primary_release_year]);
 
     return (
-        <form className="w-full" onSubmit={handleSubmit(submit)}>
+        <form className="w-full" onSubmit={handleSubmit(handleFormSubmit)}>
             <div className="w-full flex gap-2.5 justify-center items-center pb-4">
                 <div className="flex-1 flex justify-center items-center max-w-[488px]">
                     <input type="text" {...register("query")} className="w-full h-14 p-4 bg-mauve-100 dark:bg-mauve-dark-100 border-t border-b border-l border-mauve-600 dark:border-mauve-dark-600 rounded-s outline-none text-mauve-dark-100 dark:text-white" placeholder="Pesquise por filmes" />
@@ -59,7 +55,7 @@ export default ({ submit }) => {
                     <IconFilter className="text-mauve-950 dark:text-mauve-dark-950" />
                 </button>
             </div>
-            {filter && (
+            {isFilterActive && (
                 <div className="w-full flex flex-wrap gap-2.5 justify-center items-center pb-6">
                     <select {...register("sort_by")} className="flex-1 p-4 min-w-52 xs:min-w-60 text-mauve-dark-100 dark:text-white bg-mauve-100 dark:bg-mauve-dark-100 border border-mauve-600 dark:border-mauve-dark-600 rounded outline-none">
                         <option value="popularity.desc">Popularidade</option>
