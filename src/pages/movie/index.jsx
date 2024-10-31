@@ -70,7 +70,7 @@ export default () => {
             <div
                 style={{ backgroundImage: `url(${getUrlPoster(movie?.backdrop_path)})` }}
                 className="movie-info w-full bg-cover">
-                <div className="w-full h-full bg-movie-gradient-dark sm:p-8 flex flex-col items-center lg:items-start lg:flex-row gap-8">
+                <div className="w-full h-full sm:dark:bg-movie-gradient-dark sm:p-8 flex flex-col items-center lg:items-start lg:flex-row gap-8">
                     <div className="flex-1 min-w-64 max-w-80">
                         <img src={poster} className="w-full rounded" />
                     </div>
@@ -78,10 +78,10 @@ export default () => {
                         <div className="flex flex-wrap gap-x-8 gap-y-4 justify-between items-center">
                             <div className="flex flex-col justify-between gap-2 min-w-60 sm:min-w-80">
                                 <div className="flex flex-col">
-                                    <h1 className="text-3xl text-mauve-dark-975 font-semibold">{movie?.title}</h1>
+                                    <h1 className="text-3xl text-mauve-975 dark:text-mauve-dark-975 font-semibold">{movie?.title}</h1>
                                     <span className="text-mauve-950">Título original: {movie?.original_title}</span>
                                 </div>
-                                <span className="text-mauve-dark-975 italic">{movie?.tagline}</span>
+                                <span className="text-mauve-975 dark:text-mauve-dark-975 italic">{movie?.tagline}</span>
                             </div>
                             <div className="flex flex-wrap gap-4 items-center min-w-60 sm:min-w-80">
                                 <InfoFlash title="Popularidade">
