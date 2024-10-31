@@ -19,7 +19,7 @@ async function searchMovieVideo(id) {
     const { data } = await api.get(`/movie/${id}/videos`, {
         params: { language: "pt-BR" }
     });
-    return Array.isArray(data.results) ? data.results : [];
+    return data.results;
 }
 
 const InfoFlash = ({ title, children, className }) => {
@@ -41,9 +41,8 @@ export default () => {
 
     function getMovieGenres(movie) {
         const genres = [];
-        for (let { name } of movie.genres) {
+        for (let { name } of movie.genres)
             genres.push(name);
-        }
         setMovieGenres(genres);
     }
 
@@ -66,7 +65,7 @@ export default () => {
     }, [movie]);
 
     return (
-        <main className="w-full flex-1 p-4 xs:p-8 max-w-[1400px] mx-auto">
+        <main className="flex-1 w-full p-4 xs:p-8 max-w-[1400px] mx-auto">
             <div
                 style={{ backgroundImage: `url(${getUrlPoster(movie?.backdrop_path)})` }}
                 className="movie-info w-full bg-cover">

@@ -30,16 +30,20 @@ export default ({ page, handlePreviousPage, handleNextPage, handleChangePage }) 
         setPages(generatePages(page));
     }, [page]);
 
+    if (!page) return <></>;
+
     return (
         <div className="w-full pt-6 px-3 flex gap-2 sm:gap-3 md:gap-4 justify-center items-center">
             <button onClick={handlePreviousPage} className={classButton} disabled={page == 1}>
                 <IconChevronLeft />
             </button>
+
             {pages.map((p, idx) => (
                 <button key={idx} onClick={() => handleChangePage(p)} className={classButton} disabled={page == p}>
                     {p}
                 </button>
             ))}
+
             <button onClick={handleNextPage} className={classButton} disabled={page == 500}>
                 <IconChevronRight />
             </button>

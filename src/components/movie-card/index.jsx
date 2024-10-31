@@ -17,6 +17,7 @@ export default ({ id, poster_path, genres, title, vote_average }) => {
     return (
         <Link to={`/movies/${id}`} className="movie-card pb-[150%] bg-black relative overflow-hidden rounded z-0">
             <img src={poster} alt={title} className="absolute top-0 left-0 w-full h-full object-cover z-10" />
+            
             <div className="p-4 w-full h-full absolute top-0 left-0 flex flex-col gap-2 justify-end items-stretch bg-card-gradient-dark z-20">
                 <div className="movie-rating w-full h-full absolute top-0 left-0 flex justify-center pt-[10%] sm:pt-[30%]">
                     <ProgressCircle progress={parseInt(vote_average * 10)} size={140} />

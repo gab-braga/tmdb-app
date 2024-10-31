@@ -34,7 +34,8 @@ async function addMovieGenres(data = []) {
     
     for (const movie of movies) {
         movie.genres = [];
-        for (const id of movie.genre_ids) {
+        const ids =  movie.genre_ids || [];
+        for (const id of ids) {
             const genre = genres.find(g => g.id == id);
             movie.genres.push(genre.name);
         }
@@ -72,13 +73,13 @@ export default () => {
     }
 
     useEffect(() => {
-        loadData()
+        loadData();
     }, [page, paramsQuery]);
 
     return (
         <main className="w-full flex-1 py-8 xs:px-8 max-w-[1400px] mx-auto">
             <FormFilter submit={handleSubmitFilter} />
-            <div className="bg-[#1414153b] dark:bg-[#EBEAF814] p-4 xs:p-6 rounded backdrop-blur-sm grid gap-4 md:gap-6 grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+            <div className="grid gap-4 md:gap-6 grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 bg-[#1414153b] dark:bg-[#EBEAF814] p-4 xs:p-6 rounded backdrop-blur-sm">
                 {movies.map((movie, idx) => <MovieCard {...movie} key={idx} />)}
             </div>
             <Pagination {...{ page, handlePreviousPage, handleNextPage, handleChangePage }} />
