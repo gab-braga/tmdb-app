@@ -76,7 +76,7 @@ export default () => {
     }, [page, paramsQuery]);
 
     return (
-        <main className="w-full flex-1 p-8">
+        <main className="w-full flex-1 p-8 max-w-[1400px] mx-auto">
             <FormFilter submit={handleSubmitFilter} />
             <div className="bg-[#1414153b] dark:bg-[#EBEAF814] p-6 rounded backdrop-blur-sm grid gap-4 md:gap-6 grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
                 {movies.map((movie, idx) => <MovieCard {...movie} key={idx} />)}

@@ -21,7 +21,7 @@ export default ({ id, poster_path, genres, title, vote_average }) => {
                 <div className="movie-rating w-full h-full absolute top-0 left-0 flex justify-center pt-[10%] sm:pt-[30%]">
                     <ProgressCircle progress={parseInt(vote_average * 10)} size={140} />
                 </div>
-                <span className="w-full text-sm sm:text-base font-semibold leading-tight uppercase text-[#EEEEEE]">
+                <span className="w-full text-sm sm:text-base font-semibold leading-tight uppercase text-[#EEEEEE] overflow-hidden">
                     {title}
                 </span>
                 <span className="movie-genres text-xs sm:text-sm text-[#B4B4B4] leading-tight">{genres}</span>
