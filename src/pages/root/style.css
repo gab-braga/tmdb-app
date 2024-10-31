@@ -1,0 +1,3 @@
+:not(.dark .bg-root).bg-root {
+    background-image: none !important;
+}
