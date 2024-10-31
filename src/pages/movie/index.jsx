@@ -86,7 +86,7 @@ export default () => {
                                         {movie.vote_count}
                                     </span>
                                 </InfoFlash>
-                                <ProgressCircle progress={parseInt(movie.vote_average * 10)} size={98} />
+                                <ProgressCircle progress={parseInt(movie.vote_average * 10)} size={140} />
                             </div>
                         </div>
                         <div className="flex gap-4">

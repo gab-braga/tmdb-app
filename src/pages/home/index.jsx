@@ -28,9 +28,10 @@ async function searchMovies(data = {}) {
     }
 }
 
-async function addGenres(data = []) {
+async function addMovieGenres(data = []) {
     const movies = [...data];
     const genres = await searchGenres();
+    
     for (const movie of movies) {
         movie.genres = [];
         for (const id of movie.genre_ids) {
@@ -48,7 +49,7 @@ export default () => {
 
     async function loadData() {
         const movies = await searchMovies({ page, ...paramsQuery });
-        await addGenres(movies);
+        await addMovieGenres(movies);
         setMovies(movies);
     }
 
@@ -77,7 +78,7 @@ export default () => {
     return (
         <main className="w-full flex-1 p-8">
             <FormFilter submit={handleSubmitFilter} />
-            <div className="bg-[#1414153b] dark:bg-[#EBEAF814] p-6 rounded backdrop-blur-sm grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+            <div className="bg-[#1414153b] dark:bg-[#EBEAF814] p-6 rounded backdrop-blur-sm grid gap-4 md:gap-6 grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
                 {movies.map((movie, idx) => <MovieCard {...movie} key={idx} />)}
             </div>
             <Pagination {...{ page, handlePreviousPage, handleNextPage, handleChangePage }} />

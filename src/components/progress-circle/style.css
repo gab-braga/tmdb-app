@@ -11,3 +11,15 @@
     stroke-dasharray: var(--circle);
     stroke-dashoffset: calc(var(--circle) - ((var(--circle) / 100) * var(--progress)));
 }
+
+@media(max-width: 640px) {
+    .progress-circle {
+        transform: scale(0.7);
+    }
+}
+
+@media(max-width: 480px) {
+    .progress-circle {
+        transform: scale(0.5);
+    }
+}

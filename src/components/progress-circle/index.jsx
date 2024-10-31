@@ -20,8 +20,8 @@ export default ({ progress, size }) => {
             "--progress": progress,
             "--circle": `${circle}px`,
             width: size, height: size
-        }} className="rounded-full bg-[#00000080] backdrop-blur-sm relative">
-            <svg className="progress-circle" width={size} height={size}>
+        }} className="progress-circle rounded-full bg-[#00000080] backdrop-blur-sm relative">
+            <svg width={size} height={size}>
                 <circle cx="50%" cy="50%" r={radius}></circle>
                 <circle cx="50%" cy="50%" r={radius}></circle>
             </svg>

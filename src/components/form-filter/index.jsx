@@ -25,11 +25,7 @@ export default ({ submit }) => {
     }
 
     function handleToggleFilter() {
-        const toggleFilter = !isFilterActive;
-        setFilterActive(toggleFilter);
-        if (toggleFilter)
-            sendFormData();
-        else submit({ query });
+        setFilterActive(value => !value);
     }
 
     function handleFormSubmit() {
