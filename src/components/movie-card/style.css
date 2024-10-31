@@ -10,3 +10,15 @@
 .movie-card:hover .movie-genres {
     display: inline;
 }
+
+@media(max-width: 640px) {
+    .movie-card .progress-circle {
+        transform: scale(0.7);
+    }
+}
+
+@media(max-width: 480px) {
+    .movie-card .progress-circle {
+        transform: scale(0.5);
+    }
+}
