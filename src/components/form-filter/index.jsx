@@ -39,7 +39,7 @@ export default ({ submit }) => {
     }, [sort_by, language, include_adult, primary_release_year]);
 
     return (
-        <form className="w-full" onSubmit={handleSubmit(handleFormSubmit)}>
+        <form className="w-full px-4" onSubmit={handleSubmit(handleFormSubmit)}>
             <div className="w-full flex gap-2.5 justify-center items-center pb-4">
                 <div className="flex-1 flex justify-center items-center max-w-[488px]">
                     <input type="text" {...register("query")} className="w-full h-14 p-4 bg-mauve-100 dark:bg-mauve-dark-100 border-t border-b border-l border-mauve-600 dark:border-mauve-dark-600 rounded-s outline-none text-mauve-dark-100 dark:text-white" placeholder="Pesquise por filmes" />

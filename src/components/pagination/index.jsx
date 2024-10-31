@@ -31,7 +31,7 @@ export default ({ page, handlePreviousPage, handleNextPage, handleChangePage }) 
     }, [page]);
 
     return (
-        <div className="w-full pt-6 flex gap-2 sm:gap-3 md:gap-4 justify-center items-center">
+        <div className="w-full pt-6 px-3 flex gap-2 sm:gap-3 md:gap-4 justify-center items-center">
             <button onClick={handlePreviousPage} className={classButton} disabled={page == 1}>
                 <IconChevronLeft />
             </button>

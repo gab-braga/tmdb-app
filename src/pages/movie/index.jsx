@@ -71,7 +71,7 @@ export default () => {
                 style={{ backgroundImage: `url(${getUrlPoster(movie?.backdrop_path)})` }}
                 className="movie-info w-full bg-cover">
                 <div className="w-full h-full sm:dark:bg-movie-gradient-dark sm:p-8 flex flex-col items-center lg:items-start lg:flex-row gap-8">
-                    <div className="flex-1 min-w-64 max-w-80">
+                    <div className="flex-1 min-w-64 xs:max-w-80">
                         <img src={poster} className="w-full rounded" />
                     </div>
                     <div className="flex-1 flex flex-col gap-4">
