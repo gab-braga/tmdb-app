@@ -17,6 +17,7 @@ export default {
         "home-image": "url('src/assets/backgropund-krists-luhaers-unsplash.png')",
         "home-gradient-dark": "linear-gradient(0deg, #121113 0%, rgba(18,17,19, 0.70) 40%, #121113 90%);",
         "card-gradient-dark": "linear-gradient(0deg, rgba(18,17,19, 0.90) 15%, transparent 60%);",
+        "movie-gradient-dark": "linear-gradient(90deg, rgba(18,17,19,0.9) 30%, rgba(18,17,19,0.6) 94%);",
       },
       colors: {
         "purple-dark": {
