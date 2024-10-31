@@ -4,6 +4,8 @@ import { useForm } from "react-hook-form";
 import IconFilter from "../icons/IconFilter";
 import IconSearch from "../icons/IconSearch";
 
+const classField = "flex-1 w-full min-w-52 xs:min-w-60 p-4 text-mauve-dark-100 dark:text-white bg-mauve-100 dark:bg-mauve-dark-100 border border-mauve-600 dark:border-mauve-dark-600 focus:border-purple-800 dark:focus:border-purple-dark-800 transition-all rounded outline-none";
+
 export default ({ submit }) => {
     const [isFilterActive, setFilterActive] = useState(false);
     const { handleSubmit, register, watch } = useForm();
@@ -47,20 +49,20 @@ export default ({ submit }) => {
                         <IconSearch className="text-mauve-950 dark:text-mauve-dark-950" />
                     </button>
                 </div>
-                <button type="button" className="w-14 h-14 flex justify-center items-center bg-[#b844f728] dark:bg-[#B744F714] backdrop-blur-sm rounded outline-none" onClick={handleToggleFilter}>
+                <button type="button" className="w-14 h-14 flex justify-center items-center bg-[#B744F714] hover:bg-[#C150FF2E] active:bg-[#B412F90A] transition-all backdrop-blur-sm rounded outline-none" onClick={handleToggleFilter}>
                     <IconFilter className="text-mauve-950 dark:text-mauve-dark-950" />
                 </button>
             </div>
             {isFilterActive && (
                 <div className="w-full flex flex-wrap gap-2.5 justify-center items-center pb-6">
-                    <select {...register("sort_by")} className="flex-1 p-4 min-w-52 xs:min-w-60 text-mauve-dark-100 dark:text-white bg-mauve-100 dark:bg-mauve-dark-100 border border-mauve-600 dark:border-mauve-dark-600 rounded outline-none">
+                    <select {...register("sort_by")} className={classField}>
                         <option value="popularity.desc">Popularidade</option>
                         <option value="title.asc">Título</option>
                         <option value="vote_average.desc">Avaliação</option>
                         <option value="primary_release_date.desc">Data de Lançamento</option>
                     </select>
 
-                    <select {...register("language")} className="flex-1 p-4 min-w-52 xs:min-w-60 text-mauve-dark-100 dark:text-white bg-mauve-100 dark:bg-mauve-dark-100 border border-mauve-600 dark:border-mauve-dark-600 rounded outline-none">
+                    <select {...register("language")} className={classField}>
                         <option value="pt-BR">Português</option>
                         <option value="en">Inglês</option>
                         <option value="es">Espanhol</option>
@@ -94,12 +96,12 @@ export default ({ submit }) => {
                         <option value="fa">Persa</option>
                     </select>
 
-                    <select {...register("include_adult")} className="flex-1 p-4 min-w-52 xs:min-w-60 text-mauve-dark-100 dark:text-white bg-mauve-100 dark:bg-mauve-dark-100 border border-mauve-600 dark:border-mauve-dark-600 rounded outline-none">
+                    <select {...register("include_adult")} className={classField}>
                         <option value={false}>Não incluir adulto</option>
                         <option value={true}>Incluir adulto</option>
                     </select>
 
-                    <input type="number" {...register("primary_release_year", { min: 1700, max: 2100 })} className="flex-1 p-4 min-w-52 xs:min-w-60 text-mauve-dark-100 dark:text-white bg-mauve-100 dark:bg-mauve-dark-100 border border-mauve-600 dark:border-mauve-dark-600 rounded outline-none" placeholder="Ano de Lançamento" />
+                    <input type="number" {...register("primary_release_year", { min: 1700, max: 2100 })} className={classField} placeholder="Ano de Lançamento" />
                 </div>
             )}
         </form>

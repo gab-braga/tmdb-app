@@ -20,7 +20,7 @@ export default () => {
             <Link to="/" className="flex gap-4 items-center font-bold text-xl text-mauve-975 dark:text-mauve-dark-975">
                 <LogoCubos className="w-40 h-9 text-mauve-975 dark:text-mauve-dark-975" /> Movies
             </Link>
-            <button onClick={handleToggleDarkMode} className="w-16 h-12 bg-[#B744F714] flex justify-center items-center rounded-sm">
+            <button onClick={handleToggleDarkMode} className="w-16 h-12 bg-[#B744F714] hover:bg-[#C150FF2E] active:bg-[#B412F90A] transition-all flex justify-center items-center rounded-sm">
                 {darkMode ? <IconSun className="text-mauve-975 dark:text-mauve-dark-975" /> : <IconMoon className="text-mauve-975 dark:text-mauve-dark-975" />}
             </button>
         </header>
