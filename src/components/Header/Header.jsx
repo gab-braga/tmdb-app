@@ -1,9 +1,10 @@
-import './style.css';
+import React from 'react';
 import { useTheme } from '../../context/ThemeContext';
 import { Link } from 'react-router-dom';
 import LogoCubos from '../icons/LogoCubos';
 import IconSun from '../icons/IconSun';
 import IconMoon from '../icons/IconMoon';
+import './Header.css';
 
 export default () => {
   const { darkMode, toggleTheme } = useTheme();

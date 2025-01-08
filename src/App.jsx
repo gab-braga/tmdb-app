@@ -1,8 +1,8 @@
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
-import Root from './pages/root';
-import Home from './pages/home';
-import Movie from './pages/movie';
 import { ThemeProvider } from './context/ThemeContext';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import Root from './pages/Root/Root';
+import Home from './pages/Home/Home';
+import Movie from './pages/Movie/Movie';
 
 function App() {
   return (
