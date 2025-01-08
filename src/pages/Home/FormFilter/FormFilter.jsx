@@ -1,13 +1,12 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import IconFilter from '../icons/IconFilter';
-import IconSearch from '../icons/IconSearch';
+import IconFilter from '../../../components/icons/IconFilter';
+import InputSearch from '../../../components/InputSearch/InputSearch';
+import Select from '../../../components/Select/Select';
+import Input from '../../../components/Input/Input';
 import './FormFilter.css';
 
-const classField =
-  'flex-1 w-full min-w-52 xs:min-w-60 p-4 text-mauve-dark-100 dark:text-white bg-mauve-100 dark:bg-mauve-dark-100 border border-mauve-600 dark:border-mauve-dark-600 focus:border-purple-800 dark:focus:border-purple-dark-800 transition-all rounded outline-none';
-
-export default ({ submit }) => {
+export default ({ onSubmit }) => {
   const [isFilterActive, setFilterActive] = React.useState(false);
   const { handleSubmit, register, watch } = useForm();
 
@@ -18,7 +17,7 @@ export default ({ submit }) => {
   const primary_release_year = watch('primary_release_year');
 
   function sendFormData() {
-    submit({
+    onSubmit({
       query,
       sort_by,
       language,
@@ -33,7 +32,7 @@ export default ({ submit }) => {
 
   function handleFormSubmit() {
     if (isFilterActive) sendFormData();
-    else submit({ query });
+    else onSubmit({ query });
   }
 
   React.useEffect(() => {
@@ -41,19 +40,15 @@ export default ({ submit }) => {
   }, [sort_by, language, include_adult, primary_release_year]);
 
   return (
-    <form className="w-full px-4" onSubmit={handleSubmit(handleFormSubmit)}>
+    <form onSubmit={handleSubmit(handleFormSubmit)} className="w-full px-4">
       <div className="w-full flex gap-2.5 justify-center items-center pb-4">
         <div className="flex-1 flex justify-center items-center max-w-[488px]">
-          <input
-            type="text"
+          <InputSearch
             {...register('query')}
-            className="w-full h-14 p-4 bg-mauve-100 dark:bg-mauve-dark-100 border-t border-b border-l border-mauve-600 dark:border-mauve-dark-600 rounded-s outline-none text-mauve-dark-100 dark:text-white"
             placeholder="Pesquise por filmes"
           />
-          <button className="h-14 px-4 bg-mauve-100 dark:bg-mauve-dark-100 border-t border-b border-r border-mauve-600 dark:border-mauve-dark-600 flex justify-center items-center rounded-e outline-none">
-            <IconSearch className="text-mauve-950 dark:text-mauve-dark-950" />
-          </button>
         </div>
+
         <button
           type="button"
           className="w-14 h-14 flex justify-center items-center bg-[#B744F714] hover:bg-[#C150FF2E] active:bg-[#B412F90A] transition-all backdrop-blur-sm rounded outline-none"
@@ -62,18 +57,19 @@ export default ({ submit }) => {
           <IconFilter className="text-mauve-950 dark:text-mauve-dark-950" />
         </button>
       </div>
+
       {isFilterActive && (
         <div className="w-full flex flex-wrap gap-2.5 justify-center items-center pb-6">
-          <select {...register('sort_by')} className={classField}>
+          <Select {...register('sort_by')}>
             <option value="popularity.desc">Popularidade</option>
             <option value="title.asc">Título</option>
             <option value="vote_average.desc">Avaliação</option>
             <option value="primary_release_date.desc">
               Data de Lançamento
             </option>
-          </select>
+          </Select>
 
-          <select {...register('language')} className={classField}>
+          <Select {...register('language')}>
             <option value="pt-BR">Português</option>
             <option value="en">Inglês</option>
             <option value="es">Espanhol</option>
@@ -105,18 +101,17 @@ export default ({ submit }) => {
             <option value="ms">Malaio</option>
             <option value="id">Indonésio</option>
             <option value="fa">Persa</option>
-          </select>
+          </Select>
 
-          <select {...register('include_adult')} className={classField}>
+          <Select {...register('include_adult')}>
             <option value={false}>Não incluir adulto</option>
             <option value={true}>Incluir adulto</option>
-          </select>
+          </Select>
 
-          <input
+          <Input
             type="number"
-            {...register('primary_release_year', { min: 1700, max: 2100 })}
-            className={classField}
             placeholder="Ano de Lançamento"
+            {...register('primary_release_year', { min: 1700, max: 2100 })}
           />
         </div>
       )}

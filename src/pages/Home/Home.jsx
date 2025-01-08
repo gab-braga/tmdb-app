@@ -1,6 +1,6 @@
 import React from 'react';
 import api from '../../api/config';
-import FormFilter from '../../components/FormFilter/FormFilter';
+import FormFilter from './FormFilter/FormFilter';
 import MovieCard from '../../components/MovieCard/MovieCard';
 import Pagination from '../../components/Pagination/Pagination';
 import Spinner from '../../components/Spinner/Spinner';
@@ -81,7 +81,7 @@ export default () => {
 
   return (
     <main className="w-full flex-1 flex flex-col py-8 xs:px-8 max-w-[1400px] mx-auto">
-      <FormFilter submit={handleSubmitFilter} />
+      <FormFilter onSubmit={handleSubmitFilter} />
       {loading ? (
         <div className="flex-1 w-full flex justify-center items-center text-white">
           <Spinner />

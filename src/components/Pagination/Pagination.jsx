@@ -1,10 +1,8 @@
 import React from 'react';
 import IconChevronLeft from '../icons/IconChevronLeft';
 import IconChevronRight from '../icons/IconChevronRight';
+import Button from '../Button/Button';
 import './Pagination.css';
-
-const classButton =
-  'flex justify-center items-center text-white bg-purple-800 hover:bg-purple-900 active:bg-purple-700 transition-all flex-1 xs:flex-none xs:px-5 py-3 rounded-sm disabled:bg-[#22193888] dark:disabled:bg-[#EBEAF814]';
 
 function generatePages(currentPage) {
   const pages = [];
@@ -39,32 +37,23 @@ export default ({
 
   return (
     <div className="w-full pt-6 px-3 flex gap-2 sm:gap-3 md:gap-4 justify-center items-center">
-      <button
-        onClick={handlePreviousPage}
-        className={classButton}
-        disabled={page == 1}
-      >
+      <Button onClick={handlePreviousPage} disabled={page == 1}>
         <IconChevronLeft />
-      </button>
+      </Button>
 
       {pages.map((p, idx) => (
-        <button
+        <Button
           key={idx}
           onClick={() => handleChangePage(p)}
-          className={classButton}
           disabled={page == p}
         >
           {p}
-        </button>
+        </Button>
       ))}
 
-      <button
-        onClick={handleNextPage}
-        className={classButton}
-        disabled={page == 500}
-      >
+      <Button onClick={handleNextPage} disabled={page == 500}>
         <IconChevronRight />
-      </button>
+      </Button>
     </div>
   );
 };
