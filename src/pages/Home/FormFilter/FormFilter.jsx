@@ -1,9 +1,9 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import IconFilter from '../../../components/icons/IconFilter';
-import InputSearch from '../../../components/InputSearch/InputSearch';
 import Select from '../../../components/Select/Select';
 import Input from '../../../components/Input/Input';
+import IconSearch from '../../../components/icons/IconSearch';
+import IconFilter from '../../../components/icons/IconFilter';
 import './FormFilter.css';
 
 export default ({ onSubmit }) => {
@@ -43,10 +43,15 @@ export default ({ onSubmit }) => {
     <form onSubmit={handleSubmit(handleFormSubmit)} className="w-full px-4">
       <div className="w-full flex gap-2.5 justify-center items-center pb-4">
         <div className="flex-1 flex justify-center items-center max-w-[488px]">
-          <InputSearch
+          <input
             {...register('query')}
             placeholder="Pesquise por filmes"
+            type="text"
+            className="w-full h-14 p-4 bg-mauve-100 dark:bg-mauve-dark-100 border-t border-b border-l border-mauve-600 dark:border-mauve-dark-600 rounded-s outline-none text-mauve-dark-100 dark:text-white"
           />
+          <button className="h-14 px-4 bg-mauve-100 dark:bg-mauve-dark-100 border-t border-b border-r border-mauve-600 dark:border-mauve-dark-600 flex justify-center items-center rounded-e outline-none">
+            <IconSearch className="text-mauve-950 dark:text-mauve-dark-950" />
+          </button>
         </div>
 
         <button
