@@ -10,8 +10,16 @@ export function MoviesProvider({ children }) {
     return await mapMoviesAndGenres(movies, genres);
   }, []);
 
+  const getMovie = React.useCallback(async (id) => {
+    return await fetchMovie(id);
+  });
+
+  const getMovieVideo = React.useCallback(async (id) => {
+    return await fetchMovieVideo(id);
+  });
+
   return (
-    <MoviesContext.Provider value={{ getMovies }}>
+    <MoviesContext.Provider value={{ getMovies, getMovie, getMovieVideo }}>
       {children}
     </MoviesContext.Provider>
   );
@@ -38,6 +46,20 @@ async function fetchGenres() {
     params: { language: 'pt-BR' },
   });
   return response.data.genres;
+}
+
+async function fetchMovie(id) {
+  const { data } = await api.get(`/movie/${id}`, {
+    params: { language: 'pt-BR' },
+  });
+  return data;
+}
+
+async function fetchMovieVideo(id) {
+  const { data } = await api.get(`/movie/${id}/videos`, {
+    params: { language: 'pt-BR' },
+  });
+  return data.results;
 }
 
 async function mapMoviesAndGenres(movies = [], genres = []) {

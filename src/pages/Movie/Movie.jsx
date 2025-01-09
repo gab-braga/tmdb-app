@@ -1,39 +1,14 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import api, { getUrlPoster } from '../../api/config';
+import { useMovies } from '../../context/MoviesContext';
+import { getUrlPoster } from '../../api/config';
 import ProgressCircle from '../../components/ProgressCircle/ProgressCircle';
 import { formatDate, formatHour } from '../../helps/date';
 import { abbreviateMoney } from '../../helps/number';
 import StandardPoster from '../../assets/movie.png';
 import Spinner from '../../components/Spinner/Spinner';
+import InfoFlash from '../../components/InfoFlash/InfoFlash';
 import './Movie.css';
-
-async function searchMovie(id) {
-  const { data } = await api.get(`/movie/${id}`, {
-    params: { language: 'pt-BR' },
-  });
-  return data;
-}
-
-async function searchMovieVideo(id) {
-  const { data } = await api.get(`/movie/${id}/videos`, {
-    params: { language: 'pt-BR' },
-  });
-  return data.results;
-}
-
-const InfoFlash = ({ title, children, className }) => {
-  const classStyle =
-    'bg-[#e0d9ed99] dark:bg-[#23222599] backdrop-blur-sm p-4 rounded ';
-  return (
-    <div className={className ? classStyle + className : classStyle}>
-      <h3 className="text-mauve-950 dark:text-mauve-dark-950 text-xs font-bold uppercase mb-2">
-        {title}
-      </h3>
-      {children}
-    </div>
-  );
-};
 
 export default () => {
   const [loading, setLoading] = React.useState(false);
@@ -41,6 +16,7 @@ export default () => {
   const [video, setVideo] = React.useState({});
   const [movieGenres, setMovieGenres] = React.useState([]);
   const [poster, setPoster] = React.useState(StandardPoster);
+  const { getMovie, getMovieVideo } = useMovies();
   const { id } = useParams();
 
   function getMovieGenres(movie) {
@@ -49,23 +25,30 @@ export default () => {
     setMovieGenres(genres);
   }
 
-  async function loadData() {
+  async function loadMovie() {
     setLoading(true);
-    const movie = await searchMovie(id);
-    const videos = await searchMovieVideo(id);
-    setMovie(movie);
-    setVideo(videos[0]);
-    getMovieGenres(movie);
-    setLoading(false);
+    try {
+      const movie = await getMovie(id);
+      const videos = await getMovieVideo(id);
+      setMovie(movie);
+      setVideo(videos[0]);
+      getMovieGenres(movie);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
   }
 
   React.useEffect(() => {
-    loadData();
+    loadMovie();
   }, [id]);
 
   React.useEffect(() => {
-    if (movie.poster_path) setPoster(getUrlPoster(movie.poster_path));
-    else setPoster(StandardPoster);
+    if (movie.poster_path) {
+      const urlPoster = getUrlPoster(movie.poster_path);
+      setPoster(urlPoster);
+    } else setPoster(StandardPoster);
   }, [movie]);
 
   return (
