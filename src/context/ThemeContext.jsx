@@ -7,13 +7,14 @@ export function ThemeProvider({ children }) {
 
   function toggleTheme() {
     setDarkMode(!darkMode);
+    handleChangeTheme(!darkMode);
   }
 
-  React.useEffect(() => {
+  function handleChangeTheme(darkMode) {
     const root = document.documentElement;
     if (darkMode) root.classList.add('dark');
     else root.classList.remove('dark');
-  }, [darkMode]);
+  }
 
   return (
     <ThemeContext.Provider value={{ darkMode, toggleTheme }}>
