@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { getUrlPoster } from '../../api/config';
+import { getUrlPoster } from '../../api/api';
 import ProgressCircle from '../ProgressCircle/ProgressCircle';
 import StandardPoster from '../../assets/movie.png';
 import './MovieCard.css';

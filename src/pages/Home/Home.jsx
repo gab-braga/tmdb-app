@@ -1,5 +1,5 @@
 import React from 'react';
-import { useMovies } from '../../context/MoviesContext';
+import { fetchMovies, fetchGenres, mapMoviesAndGenres } from '../../api/api';
 import FormFilter from './FormFilter/FormFilter';
 import MovieCard from '../../components/MovieCard/MovieCard';
 import Pagination from '../../components/Pagination/Pagination';
@@ -10,13 +10,13 @@ export default () => {
   const [loading, setLoading] = React.useState(false);
   const [movies, setMovies] = React.useState([]);
   const [page, setPage] = React.useState(1);
-  const { getMovies } = useMovies();
 
   async function loadMovies(params = {}) {
     setLoading(true);
     try {
-      const movies = await getMovies(page, params);
-      setMovies(movies);
+      const movies = await fetchMovies({ page, ...params });
+      const genres = await fetchGenres();
+      setMovies(await mapMoviesAndGenres(movies, genres));
     } catch (error) {
       console.error(error);
     } finally {

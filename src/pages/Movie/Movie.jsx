@@ -1,13 +1,12 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { useMovies } from '../../context/MoviesContext';
-import { getUrlPoster } from '../../api/config';
-import ProgressCircle from '../../components/ProgressCircle/ProgressCircle';
+import { fetchMovie, fetchMovieVideo, getUrlPoster } from '../../api/api';
 import { formatDate, formatHour } from '../../helps/date';
 import { abbreviateMoney } from '../../helps/number';
 import StandardPoster from '../../assets/movie.png';
 import Spinner from '../../components/Spinner/Spinner';
 import InfoFlash from '../../components/InfoFlash/InfoFlash';
+import ProgressCircle from '../../components/ProgressCircle/ProgressCircle';
 import './Movie.css';
 
 export default () => {
@@ -16,7 +15,6 @@ export default () => {
   const [video, setVideo] = React.useState({});
   const [movieGenres, setMovieGenres] = React.useState([]);
   const [poster, setPoster] = React.useState(StandardPoster);
-  const { getMovie, getMovieVideo } = useMovies();
   const { id } = useParams();
 
   function getMovieGenres(movie) {
@@ -28,8 +26,8 @@ export default () => {
   async function loadMovie() {
     setLoading(true);
     try {
-      const movie = await getMovie(id);
-      const videos = await getMovieVideo(id);
+      const movie = await fetchMovie(id);
+      const videos = await fetchMovieVideo(id);
       setMovie(movie);
       setVideo(videos[0]);
       getMovieGenres(movie);
